@@ -1,4 +1,4 @@
-from langchain_community.embeddings import OllamaEmbeddings
+from langchain_ollama import OllamaEmbeddings
 # from dotenv import load_dotenv
 
 def generate_embeddings():
@@ -8,10 +8,7 @@ def generate_embeddings():
     """
     embeddings=OllamaEmbeddings(
         model="nomic-embed-text",
-        base_url="http://localhost:11434",
-        
-        
-        
+        base_url="http://localhost:11434",      
     )
     
     return embeddings

@@ -12,3 +12,4 @@ wheels/
 
 #misscleneous
 .python-version
+vector_store
