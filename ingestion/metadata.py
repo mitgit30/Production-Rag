@@ -8,7 +8,7 @@ def extract_metadata(documents):
     """
     
     for doc in documents:
-        file_path = doc.metadata.get("file_path", "")
+        file_path = doc.metadata.get("source", "")
         
         normalized_path = file_path.replace("\\", "/") # Normalize path for cross-platform compatibility
         

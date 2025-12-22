@@ -14,7 +14,7 @@ def get_vector_store():
         if not os.path.exists(VECTOR_STORE_DIR):
             raise RuntimeError("Vector store not found. Run ingestion before retrieval.")
         
+        embeddings = generate_embeddings()
+        _vector_store = FAISS.load_local(folder_path=VECTOR_STORE_DIR, embeddings=embeddings , allow_dangerous_deserialization=True,)
         
-    embeddings = generate_embeddings()
-    _vector_store = FAISS.load_local(folder_path=VECTOR_STORE_DIR, embeddings=embeddings , allow_dangerous_deserialization=True,)
     return _vector_store
