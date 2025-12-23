@@ -18,6 +18,8 @@ Rules:
 - Be concise, structured, and actionable
 - Use bullet points for procedures when appropriate
 - Highlight risks and precautions if relevant
+- Avoid giving response in tabular from - give theory
+- Take well responsibility for the formatting the response
 """
 
 USER_PROMPT_TEMPLATE = """

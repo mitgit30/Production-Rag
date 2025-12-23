@@ -1,11 +1,11 @@
 from rag.chain import run_rag
 
 def run_chain():
-    result = run_rag(query="After a CI/CD deployment, the service has partial availability and increased 5xx errors. Logs show CrashLoopBackOff. How should this be diagnosed, what was the likely root cause in past incidents, and what rollback approach is safest?")
+    result = run_rag(query="Can we safely restart pods to resolve database connection exhaustion when logs show OOMKilled and this issue occurred before? What conditions must be verified first?")
     
     print(result["answer"])
 
-    print("\nSOURCES:\n")
+    print("\nSources:\n")
     for s in result["sources"]:
         print(s)
         

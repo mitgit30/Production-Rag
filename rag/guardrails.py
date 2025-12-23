@@ -59,10 +59,7 @@ def prevent_unsafe_actions(query: str,documents: List[Document]):
     return True
 
 
-def apply_guardrails(
-    query: str,
-    documents: List[Document],
-):
+def apply_guardrails(query: str,documents: List[Document]):
     """
     Run all guardrail checks.
     """
