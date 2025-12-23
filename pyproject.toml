@@ -13,6 +13,7 @@ dependencies = [
     "langchain-ollama>=1.0.1",
     "langchain-text-splitters>=1.1.0",
     "python-dotenv>=1.2.1",
+    "streamlit>=1.52.2",
     "tqdm>=4.67.1",
     "uvicorn>=0.40.0",
 ]

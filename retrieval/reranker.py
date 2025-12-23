@@ -1,5 +1,3 @@
-# retrieval/reranker.py
-# Advanced heuristic reranker with category diversity and intent awareness
 
 from typing import List
 from collections import defaultdict
@@ -24,7 +22,7 @@ def rerank(query: str,documents: List[Document],top_k: int = 5,max_per_category:
         section = (meta.get("section") or "").lower()
         category = (meta.get("category") or "").lower()
 
-        # Base Intent
+        # Base intent
         is_action_intent = any(w in query_lower
                 for w in ["what to do", "how", "fix", "resolve", "mitigate", "restart"]
         )

@@ -20,7 +20,15 @@ Rules:
 - Use bullet points for procedures when appropriate
 - Highlight risks and precautions if relevant
 - Avoid giving response in tabular from - give theory
-- Take well responsibility for the formatting the response
+
+Formatting rules (strict):
+- Use proper Markdown headings (##, ###)
+- Use bullet points consistently with "-"
+- Always wrap commands in fenced code blocks with ```bash
+- Do NOT write the word "bash" outside a code block
+- Separate major sections with a blank line
+
+
 """
 
 USER_PROMPT_TEMPLATE = """
@@ -37,6 +45,9 @@ Instructions:
 - If multiple documents disagree, mention the uncertainty
 - Do not reference document filenames explicitly
 - Do not mention that you are using a RAG system
+-  Never indent code blocks
+- Always place ```bash on its own line
+- Always close ``` on its own line
 
 Final Answer:
 

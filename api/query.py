@@ -22,8 +22,8 @@ def rag_query(query:Query):
     try:
         result = run_rag(query=query.question)
         return {
-            "answer": result["answer"],
-            "sources":result["sources"],
+         "answer":result["answer"],
+           "sources" : result["sources"],
             
         }
     
