@@ -173,11 +173,12 @@ streamlit run app.py
 
 ## Future Improvements
 
-- Reranking for higher retrieval precision
+- Evaluating metrics for response quality and safety
 - Confidence scoring per retrieved source
 - Incident correlation across multiple signals
 - Managed vector database integration
 - Authentication and role-based responses
+- Implementing redis caching for faster retrieval
 
 ---
 
