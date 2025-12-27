@@ -31,6 +31,7 @@ The system is designed with **clear separation of concerns**:
 - **Backend Service (FastAPI)** - Handles request validation and orchestration
 - **RAG Engine** - Performs retrieval, context assembly, and response generation
 - **Vector Store (FAISS)** - Stores embeddings of operational knowledge
+- **LLM Provider** - Ollama for local inference
 - **Offline Ingestion Pipeline** - Indexes data once (not at runtime)
 
 ---
@@ -40,13 +41,13 @@ The system is designed with **clear separation of concerns**:
 ### Runtime Flow
 
 ```
-User → Streamlit UI → FastAPI Service → RAG Engine → FAISS → Response
+User → Streamlit UI → FastAPI Service → RAG Engine → FAISS → Ollama (LLM) → Response
 ```
 
 ### Ingestion Flow (One-time / Offline)
 
 ```
-Data Sources → RAG Engine → Vector Store
+Data Sources → RAG Engine → Ollama (Embeddings) → Vector Store
 ```
 
 The ingestion pipeline runs separately and is not triggered during user queries, keeping runtime latency low and predictable.
@@ -82,6 +83,25 @@ RAG_PROJECT/
 
 ---
 
+## LLM Configuration
+
+This project uses **Ollama** for local LLM inference, providing:
+
+- **Privacy**: All inference happens locally, no data sent to external APIs
+- **Cost-effective**: No API costs for production usage
+- **Customizable**: Support for various open-source models
+
+### Supported Models
+
+The system has been tested with:
+
+- **GPT OSS 120B** (Cloud deployment option)
+- **Ollama** (Local deployment - recommended)
+  - Llama 3.1
+  - Mistral
+  - Other compatible models
+
+
 ## Data Used
 
 The assistant is powered by realistic operational content, including:
@@ -107,6 +127,8 @@ All documents are embedded and indexed offline to avoid recomputation during inf
 
 **Local vector store (FAISS)** - Simple, transparent, and easy to reason about.
 
+**Ollama for LLM inference** - Privacy-first, cost-effective local execution with no external API dependencies.
+
 ---
 
 ## Example Questions This Assistant Handles Well
@@ -126,19 +148,36 @@ These questions are on-call style, not generic Q&A.
 - **Backend**: Dockerized FastAPI service (Render-compatible)
 - **Frontend**: Streamlit Cloud
 - **Vector Store**: Local FAISS index (can be swapped with managed solutions)
+- **LLM**: Ollama running locally (or GPT OSS 120B for cloud deployments)
 
 The system is designed to scale horizontally with minimal changes.
+
+### Local Development
+
+```bash
+# Start Ollama service
+ollama serve
+
+# Run backend
+cd backend
+pip install -r requirements.txt
+python -m uvicorn api.main:app --reload
+
+# Run frontend (separate terminal)
+cd ui
+pip install -r requirements.txt
+streamlit run app.py
+```
 
 ---
 
 ## Future Improvements
 
-- Evaluating metrics for response quality and safety
+- Reranking for higher retrieval precision
 - Confidence scoring per retrieved source
 - Incident correlation across multiple signals
 - Managed vector database integration
 - Authentication and role-based responses
-- implementing redis for caching
 
 ---
 
