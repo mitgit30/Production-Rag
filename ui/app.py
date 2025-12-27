@@ -59,12 +59,8 @@ if prompt:
         try:
         
             with st.spinner("Thinking..."):
-                response = requests.post(
-                    API_URL,
-                    json={"question": prompt},
-                    timeout=REQUEST_TIMEOUT
+                response = requests.post(API_URL,json={"question": prompt},timeout=REQUEST_TIMEOUT
                 )
-            
             
             response.raise_for_status()
             
@@ -93,49 +89,22 @@ if prompt:
                 "content": answer,
                 "sources": sources
             })
-            
-            
-        # Timeout error
-        except requests.exceptions.Timeout:
-            error_msg = " Request timed out. Please try again."
-            response_placeholder.error(error_msg)
-            st.session_state.messages.append({
-                "role": "assistant",
-                "content": error_msg
-            })
-       
-            
-        # Connection error
-        except requests.exceptions.ConnectionError:
-            error_msg = " Cannot connect to the backend. Please ensure the API is running."
-            response_placeholder.error(error_msg)
-            st.session_state.messages.append({
-                "role": "assistant",
-                "content": error_msg
-            })
-            
-        # HTTP error
-        except requests.exceptions.HTTPError as e:
-            error_msg = f" API Error: {e.response.status_code} - {e.response.text}"
-            response_placeholder.error(error_msg)
-            st.session_state.messages.append({
-                "role": "assistant",
-                "content": error_msg
-            })
-
+    
         
         except Exception as e:
+            
             error_msg = f" Error: {str(e)}"
             response_placeholder.error(error_msg)
             st.session_state.messages.append({
                 "role": "assistant",
                 "content": error_msg
+                
             })
 
 
 # Sidebar with additional info
 with st.sidebar:
-    st.header("ℹ About")
+    st.header(" About")
     st.markdown("""
     This assistant helps you find information about:
     - Site Reliability Engineering (SRE)

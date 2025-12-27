@@ -7,4 +7,3 @@ faiss-cpu
 langchain-ollama
 fastapi
 uvicorn
-streamlit
